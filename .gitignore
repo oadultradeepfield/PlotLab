@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Xcode user data (auto-generated, machine-specific)
+.swiftpm/xcode/
+
+# Swift Package Manager build output
+.build/
+
+# DerivedData
+DerivedData/
