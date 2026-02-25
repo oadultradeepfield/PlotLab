@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Add your app icon here -->
-<img src="assets/icon.png" alt="PlotLab App Icon" width="85">
+<img src="Assets.xcassets/AppIcon.appiconset/PlotLabIcon.png" alt="PlotLab App Icon" width="85">
 
 # PlotLab
 
@@ -38,31 +38,11 @@ The app uses a real-world dataset of mobile app downloads over 30 days, giving s
 
 ## Screenshots
 
-<!-- Add your screenshots here -->
-
-**Onboarding**
-
-![Onboarding screen](assets/screenshot-onboarding.png)
-
-**Phase 1: Frame Your Plot**
-
-![Frame phase](assets/screenshot-phase1.png)
-
-**Phase 2: Set the Scale**
-
-![Scale phase](assets/screenshot-phase2.png)
-
-**Phase 3: Plot the Points**
-
-![Plot points phase](assets/screenshot-phase3.png)
-
-**Phase 4: Draw Best-Fit Line**
-
-![Draw line phase](assets/screenshot-phase4.png)
-
-**Completion**
-
-![Completion screen](assets/screenshot-completion.png)
+|                    Onboarding Screen                     |                      Frame Phase                       |
+|:--------------------------------------------------------:|:------------------------------------------------------:|
+|   ![Onboarding screen](screenshots/01_onboarding.png)    |     ![Frame phase](screenshots/02_frame_phase.png)     |
+|                  **Plot Points Phase**                   |                  **Draw Line Phase**                   |
+| ![Plot points phase](screenshots/03_plot_the_points.png) | ![Draw line phase](screenshots/04_draw_line_phase.png) |
 
 ## Tech Stack
 
@@ -132,7 +112,7 @@ Two mechanics underpin the interactive grid and together they represent the most
 
 ### Friendly-Scale Tick Construction
 
-When you enter an axis range, the app must choose tick mark positions that land on round numbers. A "friendly interval" belongs to the set {1, 2, 2.5, 5} scaled by any power of ten: for example, 0.5, 1, 2, 2.5, 5, 10, 20, 25, and so on.
+When you enter an axis range, the app must choose tick mark positions that land on round numbers. A "friendly interval" belongs to the set `{1, 2, 2.5, 5}` scaled by any power of ten: for example, 0.5, 1, 2, 2.5, 5, 10, 20, 25, and so on.
 
 Given your chosen min and max, the app works through every candidate interval in ascending order and selects the smallest one that satisfies two conditions:
 
@@ -159,16 +139,6 @@ screenY = frameOriginY + (1 - (dataY - axisMinY) / (axisMaxY - axisMinY)) * fram
 The y-axis inverts because screen coordinates increase downward while data values increase upward. Every tapped point, every drawn line endpoint, and every tick label position passes through this transformer, keeping all layers of the grid consistent.
 
 Snap-to-grid itself runs the inverse direction: a raw drag position converts to the nearest grid-line index and then back to screen coordinates. This produces the clean, snapped corners you see when you frame the plot.
-
-## Contributing
-
-Contributions are welcome. Open an issue or submit a pull request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
 
 ## License
 
