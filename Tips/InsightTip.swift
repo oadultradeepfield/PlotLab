@@ -7,91 +7,119 @@
 
 import TipKit
 
-enum TipIdentifier: String, CaseIterable {
-    case frameGuide
-    case graphInsight
-    case predictionInsight
-    case scienceInsight
-}
-
-struct InsightTipConfiguration {
-    let title: String
-    let message: String
-    let systemImage: String
-    let actionId: String
-    let actionTitle: String
-}
-
-struct InsightTip: Tip {
-    let identifier: TipIdentifier
-    let configuration: InsightTipConfiguration
+struct FrameGuideTip: Tip {
+    @Parameter static var isActive: Bool = false
 
     var rules: [Rule] {
-        switch identifier {
-        case .frameGuide:
-            return [#Rule(InsightTipState.$frameGuideIsActive) { $0 }]
-        case .graphInsight:
-            return [#Rule(InsightTipState.$graphInsightIsActive) { $0 }]
-        case .predictionInsight:
-            return [#Rule(InsightTipState.$predictionInsightIsActive) { $0 }]
-        case .scienceInsight:
-            return [#Rule(InsightTipState.$scienceInsightIsActive) { $0 }]
-        }
+        #Rule(Self.$isActive) { $0 }
     }
 
     var title: Text {
-        Text(configuration.title)
+        Text(FrameGuideCopy.title)
     }
 
     var message: Text? {
-        Text(configuration.message)
+        Text(FrameGuideCopy.body)
     }
 
     var image: Image? {
-        Image(systemName: configuration.systemImage)
+        Image(systemName: "rectangle.dashed")
     }
 
     var actions: [Action] {
-        [Action(id: configuration.actionId, title: configuration.actionTitle)]
+        [Action(id: "gotIt", title: FrameGuideCopy.action)]
+    }
+}
+
+struct GraphInsightTip: Tip {
+    @Parameter static var isActive: Bool = false
+
+    var rules: [Rule] {
+        #Rule(Self.$isActive) { $0 }
+    }
+
+    var title: Text {
+        Text(GraphInsightCopy.title)
+    }
+
+    var message: Text? {
+        Text(GraphInsightCopy.body)
+    }
+
+    var image: Image? {
+        Image(systemName: "chart.xyaxis.line")
+    }
+
+    var actions: [Action] {
+        [Action(id: "next", title: GraphInsightCopy.action)]
+    }
+}
+
+struct PredictionInsightTip: Tip {
+    @Parameter static var isActive: Bool = false
+
+    var rules: [Rule] {
+        #Rule(Self.$isActive) { $0 }
+    }
+
+    var title: Text {
+        Text(PredictionInsightCopy.title)
+    }
+
+    var message: Text? {
+        Text(PredictionInsightCopy.body)
+    }
+
+    var image: Image? {
+        Image(systemName: "waveform.path.ecg")
+    }
+
+    var actions: [Action] {
+        [Action(id: "next", title: PredictionInsightCopy.action)]
+    }
+}
+
+struct ScienceInsightTip: Tip {
+    @Parameter static var isActive: Bool = false
+
+    var rules: [Rule] {
+        #Rule(Self.$isActive) { $0 }
+    }
+
+    var title: Text {
+        Text(ScienceInsightCopy.title)
+    }
+
+    var message: Text? {
+        Text(ScienceInsightCopy.body)
+    }
+
+    var image: Image? {
+        Image(systemName: "flask.fill")
+    }
+
+    var actions: [Action] {
+        [Action(id: "done", title: ScienceInsightCopy.action)]
     }
 }
 
 enum InsightTipState {
-    @Parameter(.transient) static var frameGuideIsActive = false
-    @Parameter(.transient) static var graphInsightIsActive = false
-    @Parameter(.transient) static var predictionInsightIsActive = false
-    @Parameter(.transient) static var scienceInsightIsActive = false
+    static func activateFrameGuide() { FrameGuideTip.isActive = true }
+    static func deactivateFrameGuide() { FrameGuideTip.isActive = false }
 
-    static func activate(_ id: TipIdentifier) {
-        switch id {
-        case .frameGuide:
-            frameGuideIsActive = true
-        case .graphInsight:
-            graphInsightIsActive = true
-        case .predictionInsight:
-            predictionInsightIsActive = true
-        case .scienceInsight:
-            scienceInsightIsActive = true
-        }
-    }
+    static func activateGraphInsight() { GraphInsightTip.isActive = true }
+    static func deactivateGraphInsight() { GraphInsightTip.isActive = false }
 
-    static func deactivate(_ id: TipIdentifier) {
-        switch id {
-        case .frameGuide:
-            frameGuideIsActive = false
-        case .graphInsight:
-            graphInsightIsActive = false
-        case .predictionInsight:
-            predictionInsightIsActive = false
-        case .scienceInsight:
-            scienceInsightIsActive = false
-        }
-    }
+    static func activatePredictionInsight() { PredictionInsightTip.isActive = true }
+    static func deactivatePredictionInsight() { PredictionInsightTip.isActive = false }
+
+    static func activateScienceInsight() { ScienceInsightTip.isActive = true }
+    static func deactivateScienceInsight() { ScienceInsightTip.isActive = false }
 
     static func deactivateAll() {
-        frameGuideIsActive = false
-        graphInsightIsActive = false
-        predictionInsightIsActive = false
-        scienceInsightIsActive = false
+        FrameGuideTip.isActive = false
+        GraphInsightTip.isActive = false
+        PredictionInsightTip.isActive = false
+        ScienceInsightTip.isActive = false
     }
 }

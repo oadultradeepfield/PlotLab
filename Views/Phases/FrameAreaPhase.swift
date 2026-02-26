@@ -12,10 +12,7 @@ struct FrameAreaPhase: View {
     @Bindable var viewModel: TutorialViewModel
     @State private var dragStart: CGPoint?
     @State private var dragCurrent: CGPoint?
-    private let frameTip = InsightTip(
-        identifier: TipConfigurations.frameGuide.id,
-        configuration: TipConfigurations.frameGuide.config
-    )
+    private let frameTip = FrameGuideTip()
 
     var body: some View {
         GeometryReader { geo in
@@ -65,7 +62,7 @@ struct FrameAreaPhase: View {
                     .popoverTip(frameTip, arrowEdge: .bottom) { action in
                         if action.id == "gotIt" {
                             frameTip.invalidate(reason: .actionPerformed)
-                            InsightTipState.deactivate(.frameGuide)
+                            InsightTipState.deactivateFrameGuide()
                         }
                     }
             }

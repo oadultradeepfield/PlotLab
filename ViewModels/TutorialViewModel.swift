@@ -74,7 +74,7 @@ class TutorialViewModel {
             frameFailCount += 1
             if frameFailCount == FrameValidation.guideThreshold {
                 showFrameGuide = true
-                InsightTipState.activate(.frameGuide)
+                InsightTipState.activateFrameGuide()
             }
         }
 
