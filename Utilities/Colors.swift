@@ -19,4 +19,5 @@ enum PlotColors {
     static let axisLine = Color(UIColor.label)
     static let hintIcon = Color.yellow
     static let completionIcon = Color.green
+    static let frameGuide = Color.orange
 }

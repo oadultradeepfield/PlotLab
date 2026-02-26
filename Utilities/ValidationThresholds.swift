@@ -12,6 +12,7 @@ enum FrameValidation {
     static let maximumCoverage: Double = 0.85
 
     static let minimumEdgeMarginBlocks: CGFloat = 1
+    static let guideThreshold: Int = 3
 }
 
 enum PointPlacement {
