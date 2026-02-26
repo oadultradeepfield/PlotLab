@@ -11,9 +11,9 @@ import TipKit
 struct InsightTipsOverlay: View {
     let viewModel: TutorialViewModel
 
-    private let graphTip = GraphInsightTip()
-    private let predictionTip = PredictionInsightTip()
-    private let scienceTip = ScienceInsightTip()
+    private let graphTip = InsightTip(configuration: TipConfigurations.graphInsight)
+    private let predictionTip = InsightTip(configuration: TipConfigurations.predictionInsight)
+    private let scienceTip = InsightTip(configuration: TipConfigurations.scienceInsight)
 
     var body: some View {
         Group {
@@ -25,8 +25,8 @@ struct InsightTipsOverlay: View {
                         .popoverTip(graphTip, arrowEdge: .bottom) { action in
                             if action.id == "next" {
                                 graphTip.invalidate(reason: .actionPerformed)
-                                GraphInsightTip.isActive = false
-                                PredictionInsightTip.isActive = true
+                                InsightTip.isActive = false
+                                InsightTip.isActive = true
                             }
                         }
 
@@ -37,8 +37,8 @@ struct InsightTipsOverlay: View {
                                 predictionTip.invalidate(
                                     reason: .actionPerformed
                                 )
-                                PredictionInsightTip.isActive = false
-                                ScienceInsightTip.isActive = true
+                                InsightTip.isActive = false
+                                InsightTip.isActive = true
                             }
                         }
 
@@ -46,7 +46,7 @@ struct InsightTipsOverlay: View {
                         .popoverTip(scienceTip, arrowEdge: .bottom) { action in
                             if action.id == "done" {
                                 scienceTip.invalidate(reason: .actionPerformed)
-                                ScienceInsightTip.isActive = false
+                                InsightTip.isActive = false
                             }
                         }
                 }

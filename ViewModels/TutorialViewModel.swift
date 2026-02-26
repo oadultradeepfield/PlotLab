@@ -74,7 +74,7 @@ class TutorialViewModel {
             frameFailCount += 1
             if frameFailCount == FrameValidation.guideThreshold {
                 showFrameGuide = true
-                FrameGuideTip.isActive = true
+                InsightTip.isActive = true
             }
         }
 
@@ -124,10 +124,7 @@ class TutorialViewModel {
     }
 
     func restart() {
-        GraphInsightTip.isActive = false
-        PredictionInsightTip.isActive = false
-        ScienceInsightTip.isActive = false
-        FrameGuideTip.isActive = false
+        InsightTip.isActive = false
         try? Tips.resetDatastore()
         withAnimation {
             showInsightTips = false
