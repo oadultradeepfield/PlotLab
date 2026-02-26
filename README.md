@@ -77,7 +77,7 @@ The app uses a real-world dataset of mobile app downloads over 30 days, giving s
 1. Clone the repository.
 
 ```bash
-git clone https://github.com/oadultradeepfield/PlotLab.git
+git clone https://github.com/oadultradeepfield/PlotLab.git PlotLab.swiftpm
 ```
 
 2. Open `PlotLab.swiftpm` in Swift Playgrounds on iPad or in Xcode 16 on macOS.
