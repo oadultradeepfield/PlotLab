@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 @main
 struct MyApp: App {
@@ -14,12 +15,14 @@ struct MyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .sheet(isPresented: $showOnboarding) {
+                .fullScreenCover(isPresented: $showOnboarding) {
                     OnboardingView {
                         showOnboarding = false
                     }
-                    .presentationDetents([.large])
-                    .presentationDragIndicator(.visible)
+                }
+                .task {
+                    try? Tips.resetDatastore()
+                    try? Tips.configure([.displayFrequency(.immediate)])
                 }
         }
     }
