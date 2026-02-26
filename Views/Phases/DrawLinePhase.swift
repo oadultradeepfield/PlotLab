@@ -28,7 +28,7 @@ struct DrawLinePhase: View {
     private var lineView: some View {
         Group {
             if let start = tempStart ?? viewModel.userPlot.lineStart,
-                let end = tempEnd ?? viewModel.userPlot.lineEnd
+               let end = tempEnd ?? viewModel.userPlot.lineEnd
             {
                 Path { path in
                     path.move(to: start)
