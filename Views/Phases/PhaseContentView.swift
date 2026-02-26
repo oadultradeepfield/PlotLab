@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhaseContentView: View {
     @Bindable var viewModel: TutorialViewModel
+    let onContinue: () -> Void
 
     var body: some View {
         switch viewModel.phase {
@@ -21,7 +22,11 @@ struct PhaseContentView: View {
         case .drawLine:
             DrawLinePhase(viewModel: viewModel)
         case .completion:
-            CompletionView(onRestart: viewModel.restart)
+            if viewModel.showInsightTips {
+                InsightTipsOverlay(viewModel: viewModel)
+            } else {
+                CompletionView(onContinue: onContinue)
+            }
         }
     }
 }

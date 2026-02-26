@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CompletionView: View {
-    let onRestart: () -> Void
+    let onContinue: () -> Void
 
     var body: some View {
         VStack(spacing: Spacing.md) {
@@ -26,9 +26,9 @@ struct CompletionView: View {
                 .frame(maxWidth: Sizing.completionDialogMaxWidth)
 
             Button {
-                onRestart()
+                onContinue()
             } label: {
-                Label(ButtonCopy.tryAgain, systemImage: "arrow.clockwise")
+                Label(ButtonCopy.continueFlow, systemImage: "arrow.right")
             }
             .buttonStyle(.borderedProminent)
         }
@@ -44,6 +44,6 @@ struct CompletionView: View {
 }
 
 #Preview {
-    CompletionView(onRestart: {})
+    CompletionView(onContinue: {})
         .padding()
 }
