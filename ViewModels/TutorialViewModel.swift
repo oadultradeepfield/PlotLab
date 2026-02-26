@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 @MainActor
 @Observable
@@ -15,13 +16,27 @@ class TutorialViewModel {
     var hint: String?
     var gridSize: CGSize = .zero
     var isDataTableVisible = false
+    var showInsightTips: Bool = false
+    var showFrameGuide: Bool = false
+    var frameFailCount: Int = 0
     let plotData = PlotData.appDownloads
+
+    var suggestedFrameRect: CGRect {
+        guard gridSize != .zero else { return .zero }
+        let spacing = GridMath.dynamicSpacing(for: gridSize)
+        return CGRect(
+            x: 2 * spacing.majorX,
+            y: 2 * spacing.majorY,
+            width: gridSize.width - 4 * spacing.majorX,
+            height: gridSize.height - 4 * spacing.majorY
+        )
+    }
 
     private var transformer: CoordinateTransformer {
         CoordinateTransformer(
             frame: userPlot.frameRect,
-            xRange: userPlot.xAxisMin...userPlot.xAxisMax,
-            yRange: userPlot.yAxisMin...userPlot.yAxisMax
+            xRange: userPlot.xAxisMin ... userPlot.xAxisMax,
+            yRange: userPlot.yAxisMin ... userPlot.yAxisMax
         )
     }
 
@@ -40,6 +55,8 @@ class TutorialViewModel {
         withAnimation(.easeInOut(duration: AnimationDuration.standard)) {
             phase = .frameArea
             userPlot.frameRect = .zero
+            showFrameGuide = false
+            frameFailCount = 0
             hint = nil
         }
     }
@@ -52,6 +69,15 @@ class TutorialViewModel {
         )
 
         hint = result.hint
+
+        if !result.isValid {
+            frameFailCount += 1
+            if frameFailCount == FrameValidation.guideThreshold {
+                showFrameGuide = true
+                FrameGuideTip.isActive = true
+            }
+        }
+
         return result.isValid
     }
 
@@ -98,7 +124,15 @@ class TutorialViewModel {
     }
 
     func restart() {
+        GraphInsightTip.isActive = false
+        PredictionInsightTip.isActive = false
+        ScienceInsightTip.isActive = false
+        FrameGuideTip.isActive = false
+        try? Tips.resetDatastore()
         withAnimation {
+            showInsightTips = false
+            showFrameGuide = false
+            frameFailCount = 0
             phase = .frameArea
             userPlot.reset()
             hint = nil
