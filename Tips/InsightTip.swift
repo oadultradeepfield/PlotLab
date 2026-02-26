@@ -23,24 +23,19 @@ struct InsightTipConfiguration {
 }
 
 struct InsightTip: Tip {
-    @Parameter(.transient) static var frameGuideIsActive = false
-    @Parameter(.transient) static var graphInsightIsActive = false
-    @Parameter(.transient) static var predictionInsightIsActive = false
-    @Parameter(.transient) static var scienceInsightIsActive = false
-
     let identifier: TipIdentifier
     let configuration: InsightTipConfiguration
 
     var rules: [Rule] {
         switch identifier {
         case .frameGuide:
-            return [#Rule(Self.$frameGuideIsActive) { $0 }]
+            return [#Rule(InsightTipState.$frameGuideIsActive) { $0 }]
         case .graphInsight:
-            return [#Rule(Self.$graphInsightIsActive) { $0 }]
+            return [#Rule(InsightTipState.$graphInsightIsActive) { $0 }]
         case .predictionInsight:
-            return [#Rule(Self.$predictionInsightIsActive) { $0 }]
+            return [#Rule(InsightTipState.$predictionInsightIsActive) { $0 }]
         case .scienceInsight:
-            return [#Rule(Self.$scienceInsightIsActive) { $0 }]
+            return [#Rule(InsightTipState.$scienceInsightIsActive) { $0 }]
         }
     }
 
@@ -59,6 +54,13 @@ struct InsightTip: Tip {
     var actions: [Action] {
         [Action(id: configuration.actionId, title: configuration.actionTitle)]
     }
+}
+
+enum InsightTipState {
+    @Parameter(.transient) static var frameGuideIsActive = false
+    @Parameter(.transient) static var graphInsightIsActive = false
+    @Parameter(.transient) static var predictionInsightIsActive = false
+    @Parameter(.transient) static var scienceInsightIsActive = false
 
     static func activate(_ id: TipIdentifier) {
         switch id {

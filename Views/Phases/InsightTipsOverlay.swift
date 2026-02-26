@@ -34,8 +34,8 @@ struct InsightTipsOverlay: View {
                         .popoverTip(graphTip, arrowEdge: .bottom) { action in
                             if action.id == "next" {
                                 graphTip.invalidate(reason: .actionPerformed)
-                                InsightTip.deactivate(.graphInsight)
-                                InsightTip.activate(.predictionInsight)
+                                InsightTipState.deactivate(.graphInsight)
+                                InsightTipState.activate(.predictionInsight)
                             }
                         }
 
@@ -46,8 +46,8 @@ struct InsightTipsOverlay: View {
                                 predictionTip.invalidate(
                                     reason: .actionPerformed
                                 )
-                                InsightTip.deactivate(.predictionInsight)
-                                InsightTip.activate(.scienceInsight)
+                                InsightTipState.deactivate(.predictionInsight)
+                                InsightTipState.activate(.scienceInsight)
                             }
                         }
 
@@ -55,7 +55,7 @@ struct InsightTipsOverlay: View {
                         .popoverTip(scienceTip, arrowEdge: .bottom) { action in
                             if action.id == "done" {
                                 scienceTip.invalidate(reason: .actionPerformed)
-                                InsightTip.deactivate(.scienceInsight)
+                                InsightTipState.deactivate(.scienceInsight)
                             }
                         }
                 }

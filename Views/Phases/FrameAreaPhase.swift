@@ -65,7 +65,7 @@ struct FrameAreaPhase: View {
                     .popoverTip(frameTip, arrowEdge: .bottom) { action in
                         if action.id == "gotIt" {
                             frameTip.invalidate(reason: .actionPerformed)
-                            InsightTip.deactivate(.frameGuide)
+                            InsightTipState.deactivate(.frameGuide)
                         }
                     }
             }
