@@ -18,7 +18,7 @@ private struct StepCard: View {
             Image(systemName: symbol)
                 .font(.title2)
                 .foregroundStyle(.white)
-                .frame(width: 40, height: 40)
+                .frame(width: Sizing.stepCardIconSize, height: Sizing.stepCardIconSize)
                 .background(
                     symbolColor,
                     in: RoundedRectangle(cornerRadius: CornerRadius.sm)
@@ -53,9 +53,9 @@ struct OnboardingPage3Steps: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: Spacing.xl) {
                 Image(systemName: "list.number")
-                    .font(.system(size: 56))
+                    .font(.system(size: Sizing.onboardingIconSize))
                     .foregroundStyle(.white)
-                    .frame(width: 100, height: 100)
+                    .frame(width: Sizing.onboardingIconFrame, height: Sizing.onboardingIconFrame)
                     .background(
                         Color.purple,
                         in: RoundedRectangle(cornerRadius: CornerRadius.md)

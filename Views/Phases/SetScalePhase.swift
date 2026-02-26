@@ -18,7 +18,7 @@ struct SetScalePhase: View {
             return 0
         }
 
-        let overlap = inputsBottom - keyboardTop + 16
+        let overlap = inputsBottom - keyboardTop + KeyboardConfig.overlapPadding
         return overlap > 0 ? -overlap : 0
     }
 
@@ -78,11 +78,11 @@ struct SetScalePhase: View {
             in: .rect(cornerRadius: CornerRadius.md)
         )
         .offset(y: keyboardOffset)
-        .animation(.easeOut(duration: 0.25), value: keyboardTop)
+        .animation(.easeOut(duration: AnimationDuration.quick), value: keyboardTop)
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
-                Button("Done") { isEditing = false }
+                Button(ButtonCopy.done) { isEditing = false }
             }
         }
         .onReceive(

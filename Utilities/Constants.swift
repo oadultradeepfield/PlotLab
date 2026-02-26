@@ -26,6 +26,10 @@ enum Sizing {
     static let phaseInstructionMaxWidth: CGFloat = 240
     static let scaleInputDialogMaxWidth: CGFloat = 280
     static let completionDialogMaxWidth: CGFloat = 400
+    static let onboardingIconSize: CGFloat = 56
+    static let onboardingIconFrame: CGFloat = 100
+    static let stepCardIconSize: CGFloat = 40
+    static let onboardingListHeight: CGFloat = 260
 }
 
 enum CornerRadius {
@@ -36,6 +40,7 @@ enum CornerRadius {
 
 enum AnimationDuration {
     static let standard: Double = 0.3
+    static let quick: Double = 0.25
 }
 
 enum GridConfig {
@@ -94,4 +99,12 @@ enum ShadowConfig {
 
 enum HintCardConfig {
     static let verticalPadding: CGFloat = Spacing.sm + Spacing.xs
+}
+
+enum KeyboardConfig {
+    static let overlapPadding: CGFloat = 16
+}
+
+enum DataDisplay {
+    static let previewRowCount: Int = 6
 }

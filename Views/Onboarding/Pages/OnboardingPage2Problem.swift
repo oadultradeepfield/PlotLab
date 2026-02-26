@@ -15,9 +15,9 @@ struct OnboardingPage2Problem: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: Spacing.lg) {
                 Image(systemName: "tablecells")
-                    .font(.system(size: 56))
+                    .font(.system(size: Sizing.onboardingIconSize))
                     .foregroundStyle(.white)
-                    .frame(width: 100, height: 100)
+                    .frame(width: Sizing.onboardingIconFrame, height: Sizing.onboardingIconFrame)
                     .background(
                         Color.orange,
                         in: RoundedRectangle(cornerRadius: CornerRadius.md)
@@ -39,7 +39,7 @@ struct OnboardingPage2Problem: View {
 
                 List {
                     Section {
-                        DataTableRowsContent(plotData: plotData, limit: 6)
+                        DataTableRowsContent(plotData: plotData, limit: DataDisplay.previewRowCount)
                     } header: {
                         HStack {
                             Text(plotData.xLabel)
@@ -50,7 +50,7 @@ struct OnboardingPage2Problem: View {
                     }
                 }
                 .listStyle(.insetGrouped)
-                .frame(height: 260)
+                .frame(height: Sizing.onboardingListHeight)
                 .scrollDisabled(true)
                 .mask {
                     LinearGradient(
