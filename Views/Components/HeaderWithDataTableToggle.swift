@@ -11,6 +11,7 @@ struct HeaderWithDataTableToggle: View {
     let phase: TutorialPhase
     let isDataTableVisible: Bool
     let onToggle: () -> Void
+    let onRestart: () -> Void
 
     var body: some View {
         VStack(spacing: Spacing.xs) {
@@ -18,6 +19,15 @@ struct HeaderWithDataTableToggle: View {
                 .font(.title2)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity)
+                .overlay(alignment: .leading) {
+                    if phase == .completion {
+                        Button(action: onRestart) {
+                            Image(systemName: "arrow.counterclockwise")
+                                .font(.title3)
+                        }
+                        .accessibilityLabel(AccessibilityCopy.restartTutorial)
+                    }
+                }
                 .overlay(alignment: .trailing) {
                     Button(action: onToggle) {
                         Image(systemName: "tablecells")
@@ -44,7 +54,8 @@ struct HeaderWithDataTableToggle: View {
     HeaderWithDataTableToggle(
         phase: .frameArea,
         isDataTableVisible: false,
-        onToggle: {}
+        onToggle: {},
+        onRestart: {}
     )
     .padding()
 }
