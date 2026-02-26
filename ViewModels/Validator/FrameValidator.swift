@@ -37,9 +37,9 @@ enum FrameValidator {
 
         let hasValidMargins =
             frame.minX >= minMarginX
-            && frame.minY >= minMarginY
-            && frame.maxX <= gridSize.width - minMarginX
-            && frame.maxY <= gridSize.height - minMarginY
+                && frame.minY >= minMarginY
+                && frame.maxX <= gridSize.width - minMarginX
+                && frame.maxY <= gridSize.height - minMarginY
 
         if !hasValidMargins {
             return .failure(HintCopy.frameTooLarge)

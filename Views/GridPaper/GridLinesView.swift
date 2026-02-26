@@ -28,13 +28,13 @@ struct GridLinesView: View {
         let cols = Int((size.width / spacing.minorX).rounded())
         let rows = Int((size.height / spacing.minorY).rounded())
 
-        for i in 0...cols {
+        for i in 0 ... cols {
             let x = CGFloat(i) * spacing.minorX
             path.move(to: CGPoint(x: x, y: 0))
             path.addLine(to: CGPoint(x: x, y: size.height))
         }
 
-        for i in 0...rows {
+        for i in 0 ... rows {
             let y = CGFloat(i) * spacing.minorY
             path.move(to: CGPoint(x: 0, y: y))
             path.addLine(to: CGPoint(x: size.width, y: y))
@@ -56,13 +56,13 @@ struct GridLinesView: View {
         let cols = Int((size.width / spacing.majorX).rounded())
         let rows = Int((size.height / spacing.majorY).rounded())
 
-        for i in 0...cols {
+        for i in 0 ... cols {
             let x = CGFloat(i) * spacing.majorX
             path.move(to: CGPoint(x: x, y: 0))
             path.addLine(to: CGPoint(x: x, y: size.height))
         }
 
-        for i in 0...rows {
+        for i in 0 ... rows {
             let y = CGFloat(i) * spacing.majorY
             path.move(to: CGPoint(x: 0, y: y))
             path.addLine(to: CGPoint(x: size.width, y: y))

@@ -35,7 +35,7 @@ enum LineValidator {
 
         let interceptDeviation =
             abs(userIntercept - expectedIntercept)
-            / max(abs(expectedIntercept), 1)
+                / max(abs(expectedIntercept), 1)
 
         if slopeDeviation > LineValidation.maxSlopeDeviation {
             return .failure(HintCopy.lineSlopeTooFar)

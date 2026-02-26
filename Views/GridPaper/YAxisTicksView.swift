@@ -37,9 +37,9 @@ struct YAxisTicksView: View {
             let ratio = (frame.maxY - gridY) / frame.height
             let value =
                 yRange.lowerBound + ratio
-                * (yRange.upperBound - yRange.lowerBound)
+                    * (yRange.upperBound - yRange.lowerBound)
 
-            if value >= yRange.lowerBound && value <= yRange.upperBound {
+            if value >= yRange.lowerBound, value <= yRange.upperBound {
                 ticks.append((y: gridY, value: value))
             }
 
@@ -48,5 +48,4 @@ struct YAxisTicksView: View {
 
         return ticks
     }
-
 }

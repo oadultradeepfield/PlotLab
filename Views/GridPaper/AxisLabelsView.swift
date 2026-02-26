@@ -45,8 +45,8 @@ struct AxisLabelsView: View {
 #Preview {
     AxisLabelsView(
         frame: CGRect(x: 50, y: 50, width: 200, height: 300),
-        xRange: 0...35,
-        yRange: 0...250,
+        xRange: 0 ... 35,
+        yRange: 0 ... 250,
         xLabel: "Days",
         yLabel: "Downloads",
         gridSize: CGSize(width: 300, height: 400)

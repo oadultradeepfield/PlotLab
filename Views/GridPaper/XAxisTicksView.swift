@@ -37,9 +37,9 @@ struct XAxisTicksView: View {
             let ratio = (gridX - frame.minX) / frame.width
             let value =
                 xRange.lowerBound + ratio
-                * (xRange.upperBound - xRange.lowerBound)
+                    * (xRange.upperBound - xRange.lowerBound)
 
-            if value >= xRange.lowerBound && value <= xRange.upperBound {
+            if value >= xRange.lowerBound, value <= xRange.upperBound {
                 ticks.append((x: gridX, value: value))
             }
 
@@ -48,5 +48,4 @@ struct XAxisTicksView: View {
 
         return ticks
     }
-
 }
