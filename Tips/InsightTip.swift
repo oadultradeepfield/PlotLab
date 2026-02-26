@@ -23,13 +23,25 @@ struct InsightTipConfiguration {
 }
 
 struct InsightTip: Tip {
-    @Parameter(.transient) static var activeTips: Set<String> = []
+    @Parameter(.transient) static var frameGuideIsActive = false
+    @Parameter(.transient) static var graphInsightIsActive = false
+    @Parameter(.transient) static var predictionInsightIsActive = false
+    @Parameter(.transient) static var scienceInsightIsActive = false
 
     let identifier: TipIdentifier
     let configuration: InsightTipConfiguration
 
     var rules: [Rule] {
-        [#Rule(Self.$activeTips) { $0.contains(identifier.rawValue) }]
+        switch identifier {
+        case .frameGuide:
+            return [#Rule(Self.$frameGuideIsActive) { $0 }]
+        case .graphInsight:
+            return [#Rule(Self.$graphInsightIsActive) { $0 }]
+        case .predictionInsight:
+            return [#Rule(Self.$predictionInsightIsActive) { $0 }]
+        case .scienceInsight:
+            return [#Rule(Self.$scienceInsightIsActive) { $0 }]
+        }
     }
 
     var title: Text {
@@ -49,14 +61,35 @@ struct InsightTip: Tip {
     }
 
     static func activate(_ id: TipIdentifier) {
-        activeTips.insert(id.rawValue)
+        switch id {
+        case .frameGuide:
+            frameGuideIsActive = true
+        case .graphInsight:
+            graphInsightIsActive = true
+        case .predictionInsight:
+            predictionInsightIsActive = true
+        case .scienceInsight:
+            scienceInsightIsActive = true
+        }
     }
 
     static func deactivate(_ id: TipIdentifier) {
-        activeTips.remove(id.rawValue)
+        switch id {
+        case .frameGuide:
+            frameGuideIsActive = false
+        case .graphInsight:
+            graphInsightIsActive = false
+        case .predictionInsight:
+            predictionInsightIsActive = false
+        case .scienceInsight:
+            scienceInsightIsActive = false
+        }
     }
 
     static func deactivateAll() {
-        activeTips.removeAll()
+        frameGuideIsActive = false
+        graphInsightIsActive = false
+        predictionInsightIsActive = false
+        scienceInsightIsActive = false
     }
 }
