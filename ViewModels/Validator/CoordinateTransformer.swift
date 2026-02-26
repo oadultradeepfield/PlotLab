@@ -20,11 +20,11 @@ struct CoordinateTransformer {
     func dataToScreen(_ point: DataPoint) -> CGPoint {
         let xRatio =
             (point.x - xRange.lowerBound)
-            / (xRange.upperBound - xRange.lowerBound)
+                / (xRange.upperBound - xRange.lowerBound)
 
         let yRatio =
             (point.y - yRange.lowerBound)
-            / (yRange.upperBound - yRange.lowerBound)
+                / (yRange.upperBound - yRange.lowerBound)
 
         return CGPoint(
             x: frame.minX + xRatio * frame.width,

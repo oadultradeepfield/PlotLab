@@ -16,21 +16,21 @@ enum TutorialPhase: Int, CaseIterable {
 
     var title: String {
         switch self {
-        case .frameArea: return PhaseCopy.Title.frameArea
-        case .setScale: return PhaseCopy.Title.setScale
-        case .plotPoints: return PhaseCopy.Title.plotPoints
-        case .drawLine: return PhaseCopy.Title.drawLine
-        case .completion: return PhaseCopy.Title.completion
+        case .frameArea: PhaseCopy.Title.frameArea
+        case .setScale: PhaseCopy.Title.setScale
+        case .plotPoints: PhaseCopy.Title.plotPoints
+        case .drawLine: PhaseCopy.Title.drawLine
+        case .completion: PhaseCopy.Title.completion
         }
     }
 
     var instruction: String {
         switch self {
-        case .frameArea: return PhaseCopy.Instruction.frameArea
-        case .setScale: return PhaseCopy.Instruction.setScale
-        case .plotPoints: return PhaseCopy.Instruction.plotPoints
-        case .drawLine: return PhaseCopy.Instruction.drawLine
-        case .completion: return PhaseCopy.Instruction.completion
+        case .frameArea: PhaseCopy.Instruction.frameArea
+        case .setScale: PhaseCopy.Instruction.setScale
+        case .plotPoints: PhaseCopy.Instruction.plotPoints
+        case .drawLine: PhaseCopy.Instruction.drawLine
+        case .completion: PhaseCopy.Instruction.completion
         }
     }
 

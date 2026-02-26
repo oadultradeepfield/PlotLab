@@ -33,11 +33,11 @@ enum ScaleValidator {
     ) -> ValidationResult {
         let xOK =
             xAxisMin <= dataXRange.lowerBound
-            && xAxisMax >= dataXRange.upperBound
+                && xAxisMax >= dataXRange.upperBound
 
         let yOK =
             yAxisMin <= dataYRange.lowerBound
-            && yAxisMax >= dataYRange.upperBound
+                && yAxisMax >= dataYRange.upperBound
 
         if !xOK || !yOK {
             return .failure(HintCopy.scaleDoesNotFit)
@@ -100,18 +100,16 @@ enum ScaleValidator {
         let minNeeded = safeSpan / Double(majorDivisions)
         let magnitude = pow(10.0, floor(log10(minNeeded)))
         let normalized = minNeeded / magnitude
-        let interval: Double
-
-        if normalized <= 1.0 {
-            interval = 1.0 * magnitude
+        let interval = if normalized <= 1.0 {
+            1.0 * magnitude
         } else if normalized <= 2.0 {
-            interval = 2.0 * magnitude
+            2.0 * magnitude
         } else if normalized <= 2.5 {
-            interval = 2.5 * magnitude
+            2.5 * magnitude
         } else if normalized <= 5.0 {
-            interval = 5.0 * magnitude
+            5.0 * magnitude
         } else {
-            interval = 10.0 * magnitude
+            10.0 * magnitude
         }
 
         let suggestedMin = floor(dataRange.lowerBound / interval) * interval

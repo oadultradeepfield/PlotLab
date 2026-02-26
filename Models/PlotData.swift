@@ -41,12 +41,12 @@ struct PlotData {
 
     var xRange: ClosedRange<Double> {
         let xs = points.map(\.x)
-        return (xs.min() ?? 0)...(xs.max() ?? 1)
+        return (xs.min() ?? 0) ... (xs.max() ?? 1)
     }
 
     var yRange: ClosedRange<Double> {
         let ys = points.map(\.y)
-        return (ys.min() ?? 0)...(ys.max() ?? 1)
+        return (ys.min() ?? 0) ... (ys.max() ?? 1)
     }
 
     /// Calculates the best-fit line using least squares linear regression.
