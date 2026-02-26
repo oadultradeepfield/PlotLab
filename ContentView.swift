@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct ContentView: View {
     @State private var viewModel = TutorialViewModel()
@@ -17,11 +18,18 @@ struct ContentView: View {
                 HeaderWithDataTableToggle(
                     phase: viewModel.phase,
                     isDataTableVisible: viewModel.isDataTableVisible,
-                    onToggle: { viewModel.isDataTableVisible.toggle() }
+                    onToggle: { viewModel.isDataTableVisible.toggle() },
+                    onRestart: { viewModel.restart() }
                 )
 
                 PhaseIndicator(currentPhase: viewModel.phase)
-                TutorialGridArea(viewModel: viewModel)
+                TutorialGridArea(
+                    viewModel: viewModel,
+                    onContinue: {
+                        viewModel.showInsightTips = true
+                        GraphInsightTip.isActive = true
+                    }
+                )
             }
 
             HintCard(message: displayedHint) {
