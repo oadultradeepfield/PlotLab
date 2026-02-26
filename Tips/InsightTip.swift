@@ -104,17 +104,37 @@ struct ScienceInsightTip: Tip {
 }
 
 enum InsightTipState {
-    static func activateFrameGuide() { FrameGuideTip.isActive = true }
-    static func deactivateFrameGuide() { FrameGuideTip.isActive = false }
+    static func activateFrameGuide() {
+        FrameGuideTip.isActive = true
+    }
 
-    static func activateGraphInsight() { GraphInsightTip.isActive = true }
-    static func deactivateGraphInsight() { GraphInsightTip.isActive = false }
+    static func deactivateFrameGuide() {
+        FrameGuideTip.isActive = false
+    }
 
-    static func activatePredictionInsight() { PredictionInsightTip.isActive = true }
-    static func deactivatePredictionInsight() { PredictionInsightTip.isActive = false }
+    static func activateGraphInsight() {
+        GraphInsightTip.isActive = true
+    }
 
-    static func activateScienceInsight() { ScienceInsightTip.isActive = true }
-    static func deactivateScienceInsight() { ScienceInsightTip.isActive = false }
+    static func deactivateGraphInsight() {
+        GraphInsightTip.isActive = false
+    }
+
+    static func activatePredictionInsight() {
+        PredictionInsightTip.isActive = true
+    }
+
+    static func deactivatePredictionInsight() {
+        PredictionInsightTip.isActive = false
+    }
+
+    static func activateScienceInsight() {
+        ScienceInsightTip.isActive = true
+    }
+
+    static func deactivateScienceInsight() {
+        ScienceInsightTip.isActive = false
+    }
 
     static func deactivateAll() {
         FrameGuideTip.isActive = false
