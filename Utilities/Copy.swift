@@ -22,9 +22,9 @@ enum PhaseCopy {
         static let setScale =
             "Clean scales are a scientific convention. Set ranges using round numbers that extend slightly beyond your data so the growth trend is easy to read."
         static let plotPoints =
-            "Precision and accuracy are scientific standards. Tap to place each day's download count. Check the data table, find the day on the horizontal axis, then the download count on the vertical axis."
+            "Precision is a scientific standard. Tap to plot each point. Find the day on the horizontal axis, downloads on the vertical axis."
         static let drawLine =
-            "Scientists call this linear regression. Drag to draw a best-fit line through the download trend. Aim for roughly equal points above and below, angled to match the growth slope."
+            "Scientists call this linear regression. Drag a best-fit line through the trend. Balance points above and below to match the growth."
         static let completion = "You have mastered scientific plotting."
     }
 }
