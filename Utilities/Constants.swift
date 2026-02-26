@@ -68,6 +68,8 @@ enum StrokeWidth {
 
 enum FrameOpacity {
     static let background: Double = 0.1
+    static let guideStroke: Double = 0.6
+    static let guideBackground: Double = 0.06
 }
 
 enum GestureConfig {

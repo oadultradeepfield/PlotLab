@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct FrameAreaPhase: View {
     @Bindable var viewModel: TutorialViewModel
     @State private var dragStart: CGPoint?
     @State private var dragCurrent: CGPoint?
+    private let frameTip = FrameGuideTip()
 
     var body: some View {
         GeometryReader { geo in
@@ -31,6 +33,38 @@ struct FrameAreaPhase: View {
                         .frame(width: rect.width, height: rect.height)
                         .position(x: rect.midX, y: rect.midY)
                 }
+
+                if viewModel.showFrameGuide {
+                    let rect = viewModel.suggestedFrameRect
+                    Rectangle()
+                        .strokeBorder(
+                            style: StrokeStyle(
+                                lineWidth: StrokeWidth.frameBorder,
+                                dash: [8, 4]
+                            )
+                        )
+                        .foregroundStyle(
+                            PlotColors.frameGuide.opacity(
+                                FrameOpacity.guideStroke
+                            )
+                        )
+                        .background(
+                            PlotColors.frameGuide.opacity(
+                                FrameOpacity.guideBackground
+                            )
+                        )
+                        .frame(width: rect.width, height: rect.height)
+                        .position(x: rect.midX, y: rect.midY)
+                }
+
+                Color.clear
+                    .frame(width: 1, height: 1)
+                    .popoverTip(frameTip, arrowEdge: .bottom) { action in
+                        if action.id == "gotIt" {
+                            frameTip.invalidate(reason: .actionPerformed)
+                            FrameGuideTip.isActive = false
+                        }
+                    }
             }
             .gesture(dragGesture(in: geo.size))
             .onAppear { viewModel.gridSize = geo.size }
