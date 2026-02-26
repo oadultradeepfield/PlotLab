@@ -19,7 +19,7 @@ struct PlotPointsPhase: View {
 
     var body: some View {
         GeometryReader { _ in
-            ZStack(alignment: .top) {
+            ZStack {
                 PlacedPointsView(points: viewModel.userPlot.placedPoints)
 
                 Color.clear.contentShape(Rectangle())
@@ -27,7 +27,8 @@ struct PlotPointsPhase: View {
                         handleTap(at: location)
                     }
                     .accessibilityAddTraits(.isButton)
-
+            }
+            .overlay(alignment: .top) {
                 if let point = currentPoint {
                     targetIndicator(for: point)
                 }
