@@ -50,6 +50,7 @@ The app uses a real-world dataset of mobile app downloads over 30 days, giving s
 - [SwiftUI](https://developer.apple.com/xcode/swiftui/) - declarative UI framework
 - [Swift Playgrounds 4](https://developer.apple.com/swift-playgrounds/) - app format and distribution target
 - [@Observable](https://developer.apple.com/documentation/observation) - state management macro (Swift 5.9+)
+- [TipKit](https://developer.apple.com/documentation/tipkit) - contextual tips and onboarding popovers
 
 ## Features
 
@@ -59,6 +60,8 @@ The app uses a real-world dataset of mobile app downloads over 30 days, giving s
 - Per-point accuracy checking against a tolerance of one minor grid square
 - Best-fit line validation using ordinary least squares regression
 - Interactive data table available during point placement
+- Frame guide overlay with TipKit popover after repeated failed frame attempts
+- Insight tips sequence after completion explaining graphs, regression, and real-world science
 - Full VoiceOver support with descriptive accessibility labels and hints
 - Apple Pencil support for precise input
 
@@ -104,7 +107,7 @@ Drag across the grid to draw a straight line through the scatter. The app valida
 
 ### Phase 5: Completion
 
-A summary screen confirms that all phases passed and suggests next steps for further exploration.
+A summary screen confirms that all phases passed. A sequence of TipKit insight popovers then walks through what the graph means, how the best-fit line predicts future values, and where scientific plotting appears in the real world.
 
 ## Learning
 
