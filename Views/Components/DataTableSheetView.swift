@@ -14,14 +14,7 @@ struct DataTableSheetView: View {
         NavigationStack {
             List {
                 Section {
-                    ForEach(plotData.points) { point in
-                        LabeledContent(
-                            point.x.formatted(.number),
-                            value: point.y.formatted(
-                                .number.precision(.fractionLength(1))
-                            )
-                        )
-                    }
+                    DataTableRowsContent(plotData: plotData)
                 } header: {
                     HStack {
                         Text(plotData.xLabel)
