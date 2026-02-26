@@ -7,6 +7,13 @@
 
 import TipKit
 
+enum TipIdentifier: String, CaseIterable {
+    case frameGuide
+    case graphInsight
+    case predictionInsight
+    case scienceInsight
+}
+
 struct InsightTipConfiguration {
     let title: String
     let message: String
@@ -16,11 +23,13 @@ struct InsightTipConfiguration {
 }
 
 struct InsightTip: Tip {
-    @Parameter(.transient) static var isActive: Bool = false
+    @Parameter(.transient) static var activeTips: Set<String> = []
+
+    let identifier: TipIdentifier
     let configuration: InsightTipConfiguration
 
     var rules: [Rule] {
-        [#Rule(Self.$isActive) { $0 }]
+        [#Rule(Self.$activeTips) { $0.contains(identifier.rawValue) }]
     }
 
     var title: Text {
@@ -37,5 +46,17 @@ struct InsightTip: Tip {
 
     var actions: [Action] {
         [Action(id: configuration.actionId, title: configuration.actionTitle)]
+    }
+
+    static func activate(_ id: TipIdentifier) {
+        activeTips.insert(id.rawValue)
+    }
+
+    static func deactivate(_ id: TipIdentifier) {
+        activeTips.remove(id.rawValue)
+    }
+
+    static func deactivateAll() {
+        activeTips.removeAll()
     }
 }

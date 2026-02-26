@@ -11,9 +11,18 @@ import TipKit
 struct InsightTipsOverlay: View {
     let viewModel: TutorialViewModel
 
-    private let graphTip = InsightTip(configuration: TipConfigurations.graphInsight)
-    private let predictionTip = InsightTip(configuration: TipConfigurations.predictionInsight)
-    private let scienceTip = InsightTip(configuration: TipConfigurations.scienceInsight)
+    private let graphTip = InsightTip(
+        identifier: TipConfigurations.graphInsight.id,
+        configuration: TipConfigurations.graphInsight.config
+    )
+    private let predictionTip = InsightTip(
+        identifier: TipConfigurations.predictionInsight.id,
+        configuration: TipConfigurations.predictionInsight.config
+    )
+    private let scienceTip = InsightTip(
+        identifier: TipConfigurations.scienceInsight.id,
+        configuration: TipConfigurations.scienceInsight.config
+    )
 
     var body: some View {
         Group {
@@ -25,8 +34,8 @@ struct InsightTipsOverlay: View {
                         .popoverTip(graphTip, arrowEdge: .bottom) { action in
                             if action.id == "next" {
                                 graphTip.invalidate(reason: .actionPerformed)
-                                InsightTip.isActive = false
-                                InsightTip.isActive = true
+                                InsightTip.deactivate(.graphInsight)
+                                InsightTip.activate(.predictionInsight)
                             }
                         }
 
@@ -37,8 +46,8 @@ struct InsightTipsOverlay: View {
                                 predictionTip.invalidate(
                                     reason: .actionPerformed
                                 )
-                                InsightTip.isActive = false
-                                InsightTip.isActive = true
+                                InsightTip.deactivate(.predictionInsight)
+                                InsightTip.activate(.scienceInsight)
                             }
                         }
 
@@ -46,7 +55,7 @@ struct InsightTipsOverlay: View {
                         .popoverTip(scienceTip, arrowEdge: .bottom) { action in
                             if action.id == "done" {
                                 scienceTip.invalidate(reason: .actionPerformed)
-                                InsightTip.isActive = false
+                                InsightTip.deactivate(.scienceInsight)
                             }
                         }
                 }

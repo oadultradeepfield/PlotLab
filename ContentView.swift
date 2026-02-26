@@ -27,7 +27,7 @@ struct ContentView: View {
                     viewModel: viewModel,
                     onContinue: {
                         viewModel.showInsightTips = true
-                        InsightTip.isActive = true
+                        InsightTip.activate(.graphInsight)
                     }
                 )
             }
