@@ -19,9 +19,9 @@ struct AxisLabelsView: View {
         ZStack(alignment: .topLeading) {
             AxisLinesView(frame: frame)
 
-            XAxisTicksView(frame: frame, xRange: xRange, gridSize: gridSize)
+            AxisTicksView(direction: .horizontal, frame: frame, range: xRange, gridSize: gridSize)
 
-            YAxisTicksView(frame: frame, yRange: yRange, gridSize: gridSize)
+            AxisTicksView(direction: .vertical, frame: frame, range: yRange, gridSize: gridSize)
 
             Text(xLabel)
                 .font(.subheadline)
