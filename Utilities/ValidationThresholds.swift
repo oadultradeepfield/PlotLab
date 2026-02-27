@@ -16,12 +16,12 @@ enum FrameValidation {
 }
 
 enum PointPlacement {
-    static let acceptanceRadius: CGFloat = 15
+    static let acceptanceRadius: CGFloat = 5
 }
 
 enum LineValidation {
-    static let maxSlopeDeviation: Double = 0.20
-    static let maxInterceptDeviation: Double = 0.20
+    static let maxSlopeDeviation: Double = 0.30
+    static let maxInterceptDeviation: Double = 3.0
 }
 
 enum ScaleValidation {
