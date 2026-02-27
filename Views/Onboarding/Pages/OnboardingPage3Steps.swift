@@ -8,6 +8,7 @@
 import SwiftUI
 
 private struct StepCard: View {
+    let stepNumber: Int
     let symbol: String
     let symbolColor: Color
     let name: String
@@ -25,8 +26,13 @@ private struct StepCard: View {
                 )
                 .accessibilityHidden(true)
 
-            Text(name)
-                .font(.headline)
+            HStack(spacing: Spacing.xs) {
+                Image(systemName: "\(stepNumber).circle.fill")
+                    .font(.headline)
+                    .foregroundStyle(symbolColor)
+                Text(name)
+                    .font(.headline)
+            }
 
             Text(why)
                 .font(.subheadline)
@@ -79,24 +85,28 @@ struct OnboardingPage3Steps: View {
                     spacing: Spacing.sm
                 ) {
                     StepCard(
+                        stepNumber: 1,
                         symbol: "square.dashed",
                         symbolColor: .blue,
                         name: OnboardingCopy.Page3.step1Name,
                         why: OnboardingCopy.Page3.step1Why
                     )
                     StepCard(
+                        stepNumber: 2,
                         symbol: "ruler",
                         symbolColor: .green,
                         name: OnboardingCopy.Page3.step2Name,
                         why: OnboardingCopy.Page3.step2Why
                     )
                     StepCard(
+                        stepNumber: 3,
                         symbol: "mappin",
                         symbolColor: .orange,
                         name: OnboardingCopy.Page3.step3Name,
                         why: OnboardingCopy.Page3.step3Why
                     )
                     StepCard(
+                        stepNumber: 4,
                         symbol: "line.diagonal",
                         symbolColor: .red,
                         name: OnboardingCopy.Page3.step4Name,
