@@ -9,6 +9,7 @@ import SwiftUI
 import TipKit
 
 struct ContentView: View {
+    let onShowOnboarding: () -> Void
     @State private var viewModel = TutorialViewModel()
     @State private var displayedHint: String = ""
 
@@ -19,7 +20,10 @@ struct ContentView: View {
                     phase: viewModel.phase,
                     isDataTableVisible: viewModel.isDataTableVisible,
                     onToggle: { viewModel.isDataTableVisible.toggle() },
-                    onRestart: { viewModel.restart() }
+                    onRestart: {
+                        viewModel.restart()
+                        onShowOnboarding()
+                    }
                 )
 
                 PhaseIndicator(currentPhase: viewModel.phase)
@@ -61,5 +65,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(onShowOnboarding: {})
 }

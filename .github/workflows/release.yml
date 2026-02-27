@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get previous tag
+        id: prev_tag
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          echo "tag=$PREV_TAG" >> $GITHUB_OUTPUT
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          if [ -n "${{ steps.prev_tag.outputs.tag }}" ]; then
+            COMMITS=$(git log ${{ steps.prev_tag.outputs.tag }}..HEAD --pretty=format:"- %s")
+          else
+            COMMITS=$(git log --pretty=format:"- %s")
+          fi
+          echo "commits<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMITS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create zip bundle
+        run: |
+          zip -r PlotLab.swiftpm.zip . -x \
+            ".git/*" \
+            ".build/*" \
+            ".github/*" \
+            ".idea/*" \
+            ".DS_Store" \
+            ".swiftpm/*" \
+            "*.zip" \
+            "README.md" \
+            "Screenshots/*"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: PlotLab (Swift Student Challenge 2026)
+          body: |
+            ## What's Changed
+
+            ${{ steps.changelog.outputs.commits }}
+
+            ---
+
+            Download PlotLab.swiftpm.zip and open with Swift Playgrounds on iPad or Mac.
+          files: PlotLab.swiftpm.zip

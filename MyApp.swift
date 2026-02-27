@@ -14,7 +14,7 @@ struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(onShowOnboarding: { showOnboarding = true })
                 .fullScreenCover(isPresented: $showOnboarding) {
                     OnboardingView {
                         showOnboarding = false
